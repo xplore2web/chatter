@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-fab top right>
+      <button ion-fab mini *ngIf="isChat" (click)="logout()"><ion-icon ios="ios-log-out" md="md-log-out"></ion-icon></button>
+    </ion-fab>
+    <ion-title text-center>Chat App</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="!isChat">
+    <ion-card>
+      <ion-card-content>
+        <img *ngIf="chats.img" [src]="chats.img" />
+        <ion-card-title>
+          <ion-item>
+            <ion-label floating>User name</ion-label>
+            <ion-input type="text" [(ngModel)]="chats.user"></ion-input>
+          </ion-item>
+          <button col-12 ion-button outline icon-start (click)="takePhoto()">
+            <ion-icon name='camera' is-active="true"></ion-icon>
+            Choose your Pic
+          </button>
+
+          <button [hidden]="!chats.user || !chats.img" col-12 ion-button color="secondary" (click)="startChat()" icon-start>
+              <ion-icon name='people'></ion-icon>
+              Chat Now
+            </button>
+        </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- <ion-col col-6 *ngFor="let photo of photos; let id = index">
+      <ion-card class="block">
+        <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+        <img [src]="photo" *ngIf="photo" />
+      </ion-card>
+    </ion-col> -->
+    <!-- <button col-10 ion-button full (click)="takePhoto()">
+        <ion-icon name="camera"></ion-icon>Take Photo
+  </button> -->
+  </div>
+  <div *ngIf="isChat">
+    <ion-list style="top:0;max-height:100%;position:absolute;bottom:5%;overflow-y:auto;width:100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <ion-item *ngFor="let chats of chatsData | async">
+        <ion-avatar item-start>
+          <img [src]="chats.img">
+        </ion-avatar>
+        <h2>{{chats?.user}}</h2>
+        <p>{{chats?.msg}}</p>
+      </ion-item>
+    </ion-list>
+    <ion-grid style="position:absolute; bottom: 0px;">
+      <ion-row>
+        <ion-col col-11>
+          <ion-item>
+            <!-- <ion-label floating>Username</ion-label> -->
+            <ion-input type="text" placeholder="start pinging.." [(ngModel)]="chats.msg"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col [hidden]="!chats.msg" col-1>
+
+          <ion-fab top right>
+            <button ion-fab mini (click)="sendMsg()"><ion-icon ios="ios-send-outline" md="md-send"></ion-icon></button>
+          </ion-fab>
+          <!-- <button ion-button color="primary" block >Send</button> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <!-- <h3 text-center>Welcome to MAK app!</h3>
+  <div class="col-10" style="position:absolute; bottom: 0px;">
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+  </div>
+  <div padding>
+    <button ion-button color="primary" block (click)="presentLoading()">Sign In</button>
+  </div> -->
+  <!-- <h3>Maps</h3>
+  <div id="map"></div>   -->
+</ion-content>

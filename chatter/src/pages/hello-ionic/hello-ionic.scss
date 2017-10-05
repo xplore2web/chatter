@@ -1,0 +1,34 @@
+page-hello-ionic {
+
+}
+agm-map {
+  height: 300px;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
+.card-ios{
+  padding: 10px;
+}
+ion-card img{
+  height: 400px;
+}
+ion-fab[top]{
+  top:0px;
+}
+ion-fab[right] {
+  right: 0px;
+}
+.toolbar-background-md,.toolbar-background-ios {
+  border-color: #98afd6;
+  background: #164394;
+}
+.toolbar-title-md ,.toolbar-title-ios{
+  color: #ffffff;
+}
+.toolbar-content-ios{
+  .fab[mini]{
+    margin:2px;
+  }
+}
